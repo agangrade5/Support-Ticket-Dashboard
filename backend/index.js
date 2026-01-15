@@ -1,7 +1,5 @@
 import express from 'express';
 import cors from 'cors';
-import cookieParser from "cookie-parser";
-import session from "express-session";
 import dotenv from 'dotenv';
 // Load environment variables
 dotenv.config();
@@ -18,20 +16,6 @@ const app = express();
 app.use(express.json({ extended: true, limit: '50mb' })); // For parsing application/json
 app.use(express.urlencoded({ extended: true, limit: '50mb' })); // For parsing application/x-www-form-urlencoded
 
-// Cookie parser
-app.use(cookieParser()); // For parsing cookies
-// Session
-app.use(session({
-    secret: process.env.SESSION_SECRET, // Load from environment variable
-    resave: false,
-    saveUninitialized: true, // Set to true for debugging
-    cookie: { 
-        secure: process.env.NODE_ENV === 'production' ? true : false,
-        httpOnly: true, // Prevents client-side JS from accessing the cookie
-        maxAge: Number(process.env.SESSION_EXPIRE) || 24 * 60 * 60 * 1000, // 1 day
-    }
-}));
-
 // CORS config for development
 app.use(cors(
     {
@@ -39,7 +23,6 @@ app.use(cors(
         origin: frontendUrl(), 
     }
 )); // For development
-
 
 // Routes
 // test api route
