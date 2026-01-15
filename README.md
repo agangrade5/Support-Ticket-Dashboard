@@ -26,7 +26,6 @@ support-ticket-dashboard/
 ├── frontend/
 │   ├── src/
 │   │   ├── App.jsx
-│   │   ├── App.css
 │   │   └── main.jsx
 │   └── package.json
 └── README.md
