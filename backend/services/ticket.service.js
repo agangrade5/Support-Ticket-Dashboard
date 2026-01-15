@@ -6,14 +6,23 @@ let tickets = [];
 let nextId = 1;
 
 /**
- * Retrieves all tickets with optional filters.
- * @param {Object} filters - An object containing status and/or priority filters.
+ * Retrieves tickets based on filters and pagination options
  * 
- * @returns {Array} An array of tickets sorted by creation time in descending order.
+ * @param {Object} filters - Optional filters to apply to the tickets
+ * @param {Object} options - Optional pagination options
+ * @property {string} [filters.status] - Filter tickets by status (open, in_progress, resolved)
+ * @property {string} [filters.priority] - Filter tickets by priority (low, medium, high)
+ * @property {number} [options.page] - Page number to retrieve (d   efault: 1)
+ * @property {number} [options.limit] - Number of tickets to retrieve per page (default: 5)
+ * @returns {Object} - An object containing the filtered tickets and pagination details
+ * @returns {Object.data} - An array of tickets
+ * 
+ * @returns {Object.pagination} - An object containing pagination details (total, page, limit, totalPages)
  */
-export const getTickets = (filters = {}) => {
+export const getTickets = (filters = {}, options = {}) => {
     let data = [...tickets];
 
+    // Filters
     if (filters.status) {
         data = data.filter(t => t.status === filters.status);
     }
@@ -22,10 +31,27 @@ export const getTickets = (filters = {}) => {
         data = data.filter(t => t.priority === filters.priority);
     }
 
-    return data.sort(
-        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-    );
+    // Sort newest first
+    data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+    // Pagination
+    const page = Number(options.page) || 1;
+    const limit = Number(options.limit) || 5;
+
+    const start = (page - 1) * limit;
+    const end = start + limit;
+
+    return {
+        data: data.slice(start, end),
+        pagination: {
+            total: data.length,
+            page,
+            limit,
+            totalPages: Math.ceil(data.length / limit)
+        }
+    };
 };
+
 
 /**
  * Creates a new ticket with the given title, customer and priority.

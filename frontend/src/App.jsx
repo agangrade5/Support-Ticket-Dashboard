@@ -1,35 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import useTickets from "./hooks/useTickets";
+import TicketTable from "./components/TicketTable";
+import NewTicketForm from "./components/NewTicketForm";
+import Filters from "./components/Filters";
+import Pagination from "./components/Pagination";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+    const [filters, setFilters] = useState({});
+    const {
+        tickets,
+        loading,
+        error,
+        pagination,
+        setPage,
+        reload
+    } = useTickets(filters);
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    return (
+        <div className="container py-4">
+            <h2 className="mb-4 text-center">Support Ticket Dashboard</h2>
+
+            <div className="card mb-3">
+                <div className="card-body">
+                    <NewTicketForm onCreate={reload} />
+                </div>
+            </div>
+
+            <div className="card mb-3">
+                <div className="card-body">
+                    <Filters filters={filters} onChange={setFilters} />
+                </div>
+            </div>
+
+            {loading && <div className="alert alert-info">Loading...</div>}
+            {error && <div className="alert alert-danger">{error}</div>}
+
+            <div className="card">
+                <div className="card-body">
+                    <TicketTable tickets={tickets} onUpdate={reload} />
+                    <Pagination
+                        page={pagination.page}
+                        totalPages={pagination.totalPages}
+                        onPageChange={setPage}
+                    />
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default App

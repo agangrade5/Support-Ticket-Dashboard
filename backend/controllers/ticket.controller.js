@@ -10,13 +10,17 @@ class TicketController {
      */
     static async getAll(req, res) {
         try {
-            const { status, priority } = req.query;
-            const tickets = getTickets({ status, priority });
+            const { status, priority, page, limit } = req.query;
+
+            const result = getTickets(
+                { status, priority },
+                { page, limit }
+            );
 
             return HttpResponse.success(
                 res,
                 "Tickets retrieved successfully.",
-                tickets,
+                result,
                 200
             );
         } catch (error) {
