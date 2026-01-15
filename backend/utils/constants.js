@@ -1,6 +1,18 @@
 import dotenv from "dotenv";
 dotenv.config();
 
+// Ticket priority and status
+export const PRIORITY = {
+    LOW: 'low',
+    MEDIUM: 'medium',
+    HIGH: 'high'
+};
+export const STATUS = {
+    OPEN: 'open',
+    IN_PROGRESS: 'in_progress',
+    RESOLVED: 'resolved'
+};
+
 /* 
  * Regular expressions for email, password, full name, and message validation.
  */

@@ -6,9 +6,11 @@ import dotenv from 'dotenv';
 // Load environment variables
 dotenv.config();
 
+import { ticketRoutes } from './routes/index.js';
 // Middleware
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import { frontendUrl } from './utils/constants.js';
+import { seedTickets, simulateChanges } from './utils/ticket.seed.js';
 
 const app = express();
 
@@ -44,10 +46,16 @@ app.use(cors(
 app.get(`/api/${process.env.API_VERSION}/test`, (req, res) => {
     res.send(`Hello ${process.env.APP_NAME} API! This is a testing route.`);
 });
-
+// Ticket routes
+app.use(`/api/${process.env.API_VERSION}/tickets`, ticketRoutes);
 // Error handling
 app.use(notFound);
 app.use(errorHandler);
+
+// Initialize
+seedTickets();
+// Start simulation
+simulateChanges();
 
 // Server start
 const hostname = '0.0.0.0'; // Always listen on all network interfaces (production-safe)
