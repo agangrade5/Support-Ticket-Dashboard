@@ -1,6 +1,13 @@
 # Real-Time Support Ticket Dashboard
 
-A full-stack application for managing support tickets with automatic real-time updates.
+A full-stack application for managing support tickets with automatic real-time updates, built as a time-boxed assignment for an internal support dashboard.
+
+## Environment & Versions
+
+- **Node.js**: v22.18.0
+- **npm**: v9.3.0
+- **React**: v19.2.0
+- **Build Tool**: Vite
 
 ## Features
 
@@ -13,7 +20,9 @@ A full-stack application for managing support tickets with automatic real-time u
 
 - **Backend**: Node.js + Express
 - **Frontend**: React (Vite)
+- **UI**: Bootstrap
 - **Real-time**: Polling (5-second intervals)
+- **Storage**: In-memory (no database)
 
 ## Project Structure
 
