@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "b7fa372a-50f1-4548-a9b1-c26a592bbbf3",
+		"name": "Support-Ticket-Backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7255895",
+		"_collection_link": "https://web-team-1704.postman.co/workspace/Web-Team-Workspace~02e3f041-67f7-4812-8ea8-c39d5eb54f8e/collection/7255895-b7fa372a-50f1-4548-a9b1-c26a592bbbf3?action=share&source=collection_link&creator=7255895"
+	},
+	"item": [
+		{
+			"name": "Manage Ticket",
+			"item": [
+				{
+					"name": "get-all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URI}}/tickets?page=1&limit=10",
+							"host": [
+								"{{BASE_URI}}"
+							],
+							"path": [
+								"tickets"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "status",
+									"value": "open",
+									"description": "open|in_progress|resolved",
+									"disabled": true
+								},
+								{
+									"key": "priority",
+									"value": "low",
+									"description": "low|medium|high",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Test Ticket Title\",\r\n    \"customer\": \"Test Ticket Customer\",\r\n    \"priority\": \"low\" // low|medium|high\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URI}}/tickets",
+							"host": [
+								"{{BASE_URI}}"
+							],
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Master",
+			"item": [
+				{
+					"name": "statuses",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BASE_URI}}/master/statuses",
+							"host": [
+								"{{BASE_URI}}"
+							],
+							"path": [
+								"master",
+								"statuses"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "test-api",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URI}}/test",
+					"host": [
+						"{{BASE_URI}}"
+					],
+					"path": [
+						"test"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
