@@ -20,8 +20,7 @@ A full-stack application for managing support tickets with automatic real-time u
 ```
 support-ticket-dashboard/
 ├── backend/
-│   ├── src/
-│   │   └── index.js
+│   ├── index.js
 │   └── package.json
 ├── frontend/
 │   ├── src/
