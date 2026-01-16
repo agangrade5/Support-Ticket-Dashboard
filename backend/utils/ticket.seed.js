@@ -95,3 +95,33 @@ export const simulateChanges = () => {
         simulateChanges(); // recursive scheduling
     }, delay);
 };
+
+/**
+ * Converts a camelCase string to a human-readable label.
+ * 
+ * @param {string} value - The string to convert.
+ * 
+ * @returns {string} The human-readable label.
+ */
+export const toLabel = (value) => {
+    return value
+        .split('_') // in_progress → ["in", "progress"]
+        .map(
+            word => word.charAt(0).toUpperCase() + word.slice(1)
+        )
+        .join(' '); // → "In Progress"
+};
+
+// ticket meta
+export const ticketMeta = {
+    priorities: [
+        { value: PRIORITY.LOW, label: toLabel(PRIORITY.LOW) },
+        { value: PRIORITY.MEDIUM, label: toLabel(PRIORITY.MEDIUM) },
+        { value: PRIORITY.HIGH, label: toLabel(PRIORITY.HIGH) }
+    ],
+    statuses: [
+        { value: STATUS.OPEN, label: toLabel(STATUS.OPEN) },
+        { value: STATUS.IN_PROGRESS, label: toLabel(STATUS.IN_PROGRESS) },
+        { value: STATUS.RESOLVED, label: toLabel(STATUS.RESOLVED) }
+    ]
+};

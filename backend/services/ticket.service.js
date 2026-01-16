@@ -12,7 +12,7 @@ let nextId = 1;
  * @param {Object} options - Optional pagination options
  * @property {string} [filters.status] - Filter tickets by status (open, in_progress, resolved)
  * @property {string} [filters.priority] - Filter tickets by priority (low, medium, high)
- * @property {number} [options.page] - Page number to retrieve (d   efault: 1)
+ * @property {number} [options.page] - Page number to retrieve (default: 1)
  * @property {number} [options.limit] - Number of tickets to retrieve per page (default: 10)
  * @returns {Object} - An object containing the filtered tickets and pagination details
  * @returns {Object.data} - An array of tickets

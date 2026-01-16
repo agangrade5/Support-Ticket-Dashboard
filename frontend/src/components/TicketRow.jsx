@@ -1,6 +1,9 @@
-import { updateTicket } from "../services/ticketApi";
+import { updateTicket } from "../services/ticket.service";
+import useMaster from "../hooks/useMaster";
 
 const TicketRow = ({ ticket, onUpdate }) => {
+    const { statuses, priorities } = useMaster();
+
     const handleChange = async (field, value) => {
         await updateTicket(ticket.id, { [field]: value });
         onUpdate();
@@ -17,9 +20,13 @@ const TicketRow = ({ ticket, onUpdate }) => {
                     value={ticket.priority}
                     onChange={e => handleChange("priority", e.target.value)}
                 >
-                    <option value="low">Low</option>
-                    <option value="medium">Medium</option>
-                    <option value="high">High</option>
+                    {
+                        priorities.map(p => (
+                            <option key={p.value} value={p.value}>
+                                {p.label}
+                            </option>
+                        ))
+                    }
                 </select>
             </td>
 
@@ -29,9 +36,13 @@ const TicketRow = ({ ticket, onUpdate }) => {
                     value={ticket.status}
                     onChange={e => handleChange("status", e.target.value)}
                 >
-                    <option value="open">Open</option>
-                    <option value="in_progress">In Progress</option>
-                    <option value="resolved">Resolved</option>
+                    {
+                        statuses.map(s => (
+                            <option key={s.value} value={s.value}>
+                                {s.label}
+                            </option>
+                        ))
+                    }
                 </select>
             </td>
 

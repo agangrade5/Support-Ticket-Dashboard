@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 // Load environment variables
 dotenv.config();
 
-import { ticketRoutes } from './routes/index.js';
+import { ticketRoutes, masterRoutes } from './routes/index.js';
 // Middleware
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import { frontendUrl } from './utils/constants.js';
@@ -31,6 +31,9 @@ app.get(`/api/${process.env.API_VERSION}/test`, (req, res) => {
 });
 // Ticket routes
 app.use(`/api/${process.env.API_VERSION}/tickets`, ticketRoutes);
+// Master routes
+app.use(`/api/${process.env.API_VERSION}/master`, masterRoutes);
+
 // Error handling
 app.use(notFound);
 app.use(errorHandler);

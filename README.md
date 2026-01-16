@@ -105,6 +105,13 @@ Updates an existing ticket.
 }
 ```
 
+### GET /api/v1/master/statuses
+Returns all ticket statuses.
+
+### GET /api/v1/master/priorities
+Returns all ticket priorities.
+
+
 ## Real-Time Approach: Polling
 
 I chose **polling** for the real-time updates because:
