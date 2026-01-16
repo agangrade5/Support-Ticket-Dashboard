@@ -48,17 +48,19 @@ support-ticket-dashboard/
    ```bash
    npm start
    ```
+
+### Check API
    
-   Test API: 
-   ```bash
-   http://localhost:3001/api/v1/test
-   
-   ```
-   Tickets API: 
-   ```bash
-   http://localhost:3001/api/v1/tickets
-   ```
-   The server seeds 10 initial tickets on startup.
+Test API: 
+```bash
+http://localhost:3001/api/v1/test
+
+```
+Tickets API: 
+```bash
+http://localhost:3001/api/v1/tickets
+```
+The server seeds 10 initial tickets on startup.
 
 ### Frontend
 
