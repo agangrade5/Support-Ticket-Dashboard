@@ -34,7 +34,7 @@ const useTickets = (filters) => {
 
         const interval = setInterval(() => {
             loadTickets(pagination.page);
-        }, 1000 * 5 ); // polling every 5 sec
+        }, 1000 * import.meta.env.VITE_POLLING_INTERVAL ); // polling every 5 seconds
 
         return () => clearInterval(interval);
     }, [filters]);
