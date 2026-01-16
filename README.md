@@ -84,11 +84,13 @@ The server seeds 10 initial tickets on startup.
 ## API Endpoints
 
 ### GET /api/v1/tickets
-Returns all tickets, optionally filtered by status and/or priority.
+Returns a paginated list of tickets, optionally filtered by status and/or priority.
 
 **Query Parameters:**
-- `status` (optional): `open`, `in_progress`, or `resolved`
-- `priority` (optional): `low`, `medium`, or `high`
+- `status` string (optional): `open`, `in_progress`, or `resolved`
+- `priority` string (optional): `low`, `medium`, or `high`
+- `page` number (optional): Page number (default: 1)
+- `limit` number (optional): Number of tickets per page (default: 10)
 
 ### POST /api/v1/tickets
 Creates a new ticket.
