@@ -34,7 +34,7 @@ const useTickets = (filters) => {
 
         const interval = setInterval(() => {
             loadTickets(pagination.page);
-        }, 5000); // polling every 5 sec
+        }, 1000 * 5 ); // polling every 5 sec
 
         return () => clearInterval(interval);
     }, [filters]);

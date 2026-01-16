@@ -26,12 +26,6 @@ const App = () => {
                 </div>
             </div>
 
-            {/* <div className="card mb-3">
-                <div className="card-body">
-                    <Filters filters={filters} onChange={setFilters} />
-                </div>
-            </div> */}
-
             {loading && <div className="alert alert-info">Loading...</div>}
             {error && <div className="alert alert-danger">{error}</div>}
 

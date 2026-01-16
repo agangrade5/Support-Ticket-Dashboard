@@ -61,4 +61,4 @@ const updateTicket = async (id, data) => {
     return res.json();
 };
 
-export { API_URL, fetchTickets, createTicket, updateTicket };
+export { fetchTickets, createTicket, updateTicket };

@@ -8,15 +8,6 @@ const Filters = ({ filters, onChange }) => {
         onChange({});
     };
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-
-        onChange({
-            ...filters,
-            [name]: value || undefined // remove filter when empty
-        });
-    };
-
     return (
         <div className="mb-4">
             {/* <h4>Filter Tickets</h4>  */}
